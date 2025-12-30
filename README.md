@@ -27,35 +27,56 @@
     assign a = "pathology"
     select(!!sym(a)) : unpack (!!) and treat symbol (sym) the value stored in variable a
 
-'sym()' : interpret the variable as a symbol rather than its potentially conflicting value (i.e. a number, TRUE, etc)
+`sym(...)` : interpret the variable as a symbol rather than its potentially conflicting value (i.e. a number, TRUE, etc)
 
-`x <- y` : 
+`x <- y` : assign/equate x to y 
+
+`%in%` : separate 
+ ex.
+  + metadata <- get_gambl_metadata() %>%
+  filter(
+    study == "FL_Dreval",
+    pathology %in% c("FL", "DLBCL")
+  )
 
 
-`%in%`
+`{...}` : not part of a function 
+  ex.
+  + show_col <- function(data, group){
+  data %>%
+    filter(
+      !!sym("group") == {{group}}
+    ) %>% //
 
-`{...}` 
+`x = y` : assigning/equating x to y (i.e. an argument to a function)
+  ex.
+  +  metadataColumns = c("BCL2 Status", "Analysis cohort"),
+  backgroundColour = "white"
 
-`x = y`
+`+/-` : list (point form)
 
-`+/-`
+`"x"` : (no spaces, use underscore for different words)
 
-`"x"`
+`==` confirming equality
 
-`==`
+`::` : accessing a function
 
-`::`
+`>=` : greater than or equal to 
 
-`>=`
+`!` : opposite of supposed value
+ 
+`!=` : not equal to
 
-`!`
+`c()` : 
 
-`c()`
+`<- c` :
+ 
+`-R` :
 
-`<- c`
+`-u` :
 
-`-R`
+`object$name` :
 
-`-u`
-
-`x$y`
+`%>%`
+  ex.
+  + metadata <- get_gambl_metadata() %>%
