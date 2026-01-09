@@ -31,43 +31,59 @@
 
 `x <- y` : assign/equate x to y 
 
-`%in%` : separate 
+`x = y` : assigning/equating x to y (i.e. an argument to a function)
+  ex.
+  +  metadataColumns = c("BCL2 Status", "Analysis cohort"),
+  backgroundColour = "white"
+
+`%in%` : check whether an element is contained within another object  
  ex.
-  + metadata <- get_gambl_metadata() %>%
-  filter(
-    study == "FL_Dreval",
+  + "FL" %in% c("FL", "DLBCL") will return TRUE because "FL" is in the list provided
+  + "FL" %in% c("fl", "DLBCL") will return FALSE because "FL" is not in the list provided
+  + "name" %in% c("age", "family members") will return FALSE because "name" is not in the list provided 
+  + pathology <- "FL"
     pathology %in% c("FL", "DLBCL")
-  )
-
-
-`{...}` : not part of a function 
+    
+`{...}` : if attached to a function, "..." defines what the function will do
   ex.
   + show_col <- function(data, group){
   data %>%
     filter(
       !!sym("group") == {{group}}
     ) %>% //
-
-`x = y` : assigning/equating x to y (i.e. an argument to a function)
-  ex.
-  +  metadataColumns = c("BCL2 Status", "Analysis cohort"),
-  backgroundColour = "white"
+  }
 
 `+/-` : list (point form)
+  ex.
+  + apples
+  - olive oil
 
 `"x"` : (no spaces, use underscore for different words)
+  ex. 
 
 `==` confirming equality
+  ex.
+  + filter(
+      !!sym("group") == {{group}}
+    )
 
-`::` : accessing a function
+`::` : accessing a specific function when there are multiple functions with the same name in one package
+  ex 
+  + package::functionname
 
 `>=` : greater than or equal to 
 
 `!` : opposite of supposed value
+  ex
+  + !0 = TRUE
+  + !1 = FALSE
  
 `!=` : not equal to
+  + 5 != 3 
 
-`c()` : 
+`c()` : defines a list; c stands for combine
+  ex
+  + my_grocery <- c("apples", "olive oil")
 
 `<- c` :
  
@@ -75,8 +91,74 @@
 
 `-u` :
 
+`-m ""`: "" includes message
+  ex.
+  + git commit -m "defined -m"
+
 `object$name` :
 
 `%>%`
   ex.
   + metadata <- get_gambl_metadata() %>%
+ 
+To annotate:  
+
+select(
+    sample_id = `Genome sample id`,
+    `Analysis cohort`,
+    "BCL2 Status" = `BCL2 WGS Tx`
+  ) %>%
+  
+  
+mutate(
+    # convert from boolean to character
+    `BCL2 Status` = ifelse(`BCL2 Status`, "POS", "NEG"),
+    # adding seq type for compatibility with plotting
+    seq_type = "genome"
+  )
+  
+ashm_heatmap <- prettyMutationDensity(
+  these_samples_metadata = metadata,
+  maf_data = maf,
+  cluster_samples = FALSE,
+  regions_bed = some_regions,
+  min_bin_recurrence = 10,
+  region_fontsize = 5,
+  window_size = 1000,
+  slide_by = 500,
+  orientation = "sample_columns",
+  sortByMetadataColumns = c("Analysis cohort", "BCL2 Status"),
+  metadataColumns = c("BCL2 Status", "Analysis cohort"),
+  backgroundColour = "white",
+  customColours = list(
+    "Analysis cohort" = get_gambl_colours(),
+    "BCL2 Status" = get_gambl_colours("clinical")
+  ),
+  returnEverything = TRUE
+)
+
+show_col(all_c, "mutation")
+
+some_regions <- somatic_hypermutation_locations_GRCh37_v0.2 %>%
+  select(1:4) %>%
+  rename(
+    "chrom" = "chr_name",
+    "start" = "hg19_start",
+    "end" = "hg19_end",
+    "name" = "gene"
+  ) %>%
+  mutate(chrom = str_remove(chrom, "chr"))
+  
+gene_groups
+metadataColumns <- c(
+  "pathology",
+  "lymphgen",
+  "genetic_subgroup",
+  "COO_consensus",
+  "sex"
+)
+
+gene_groups <- c(
+  rep("FL", length(fl_genes)),
+  rep("DLBCL", length(dlbcl_genes))
+)
