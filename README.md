@@ -58,8 +58,13 @@
   + apples
   - olive oil
 
-`"x"` : (no spaces, use underscore for different words)
+`"x"` : (no spaces, use underscore for different words); x represents a string (a word), letters/elements represent substrings
   ex. 
+  + "one", 1, "1" -- all different
+  
+`x`: not in quotation marks equals variable
+  
+`TRUE/FALSE` : boolean
 
 `==` confirming equality
   ex.
@@ -67,9 +72,10 @@
       !!sym("group") == {{group}}
     )
 
-`::` : accessing a specific function when there are multiple functions with the same name in one package
+`::` : accessing a specific function when there are multiple functions with the same name in one package, whichever function is most recent will take definition over a function that was defined previously
   ex 
   + package::functionname
+  + rstatix::add_xy_position(x = "comp_group")
 
 `>=` : greater than or equal to 
 
@@ -85,19 +91,22 @@
   ex
   + my_grocery <- c("apples", "olive oil")
 
-`<- c` :
+`<- c()` : equating c() with something 
  
-`-R` :
+`-R` : recursive, go through every single subdirectory of a major directory
 
-`-u` :
+`-u` : u stands for set upstream, only do it when we first create a branch not any other time
 
 `-m ""`: "" includes message
   ex.
   + git commit -m "defined -m"
 
-`object$name` :
+`object$name` : object is a dataframe, name is a specific column of that dataframe
+  ex
+  + metadata <- get_gambl_metadata() 
+    metadata$pathology
 
-`%>%`
+`%>%`:
   ex.
   + metadata <- get_gambl_metadata() %>%
  
