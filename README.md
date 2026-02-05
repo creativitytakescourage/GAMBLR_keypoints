@@ -108,6 +108,19 @@
 `%>%`:
   ex.
   + metadata <- get_gambl_metadata() %>%
+  
+# Specific vocabulary for GAMBLR.helpers
+# get_gambl_colours.R
+  
+`@param`: sets particular parameter
+  + alpha = 0.5
+
+`col2rgb()`: breaks down color name or HEX code into Red, Green, and Blue components
+
+`rgb()`: creates a color from numbers (opposite of col2rgb())
+
+`alpha`: transparency, can be set to a specific scale
+  + for example: alpha = alpha * 255L, if 0 < alpha < 1, and alpha = 0.5, then 0.5 * 255 = 127.5
  
 To annotate:  
 
