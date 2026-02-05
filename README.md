@@ -14,7 +14,6 @@
   
 `function(...)` : name of the function(arguments we want to specify)
   ex.
-  
   + sum(1, 2) : give us a sum of 1 and 2
   + mean(2, 4) : give us the average of 2 and 4
   + get_gambl_metadata(seq_type = "capture") : assigning value "capture" to the argument "seq_type"
