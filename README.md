@@ -190,14 +190,14 @@ gene_groups <- c(
 
 `paste0()`: combines character strings, no space between strings
   + paste0("Data_", "Analysis")
-  + Result: "Data_Analysis"
+    + Result: "Data_Analysis"
 
 `if(){}`: if () is satisfied
   + ex.
-  +  if(as_rgb_string){}
+    +  if(as_rgb_string){}
 
 `for(){}`: creates loop that runs through everything in {}
   + ex.
-  + for(colslot in names(all_colours)){
+    + for(colslot in names(all_colours)){
     raw_cols = all_colours[[colslot]]
     }
