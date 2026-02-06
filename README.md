@@ -183,3 +183,17 @@ gene_groups <- c(
 
 `alpha`: transparency, can be set to a specific scale
   + for example: alpha = alpha * 255L, if 0 < alpha < 1, and alpha = 0.5, then 0.5 * 255 = 127.5
+`paste()`: combines character strings, automatically adds space between strings
+  + paste("Data", "Analysis", sep = "-")
+    + Result: "Data-Analysis"
+`paste0()`: combines character strings, no space between strings
+  + paste0("Data_", "Analysis")
+    + Result: "Data_Analysis"
+`if(){}`: if () is satisfied
+  + ex.
+    if(as_rgb_string){}
+`for(){}`: creates loop that runs through everything in {}
+  + ex.
+    for(colslot in names(all_colours)){
+    raw_cols = all_colours[[colslot]]
+    }
