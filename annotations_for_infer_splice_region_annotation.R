@@ -1,6 +1,10 @@
 # Fix the splice region annotations
-maf <- maf %>% 
+maf <- maf %>% #`%>%`takes the result of one function (maf) and pipes it into the next function as the first argument
+  #mutate() is used to create new columns while keeping existing ones
   mutate(
+    # left side is the name for the column 
+    # right side is the instruction or formula R uses to generate the data
+    
     # Extract base cDNA coordinate
     cdna_pos = as.numeric(str_extract(HGVSc, "(?<=c\\.)-?\\d+")),
     
