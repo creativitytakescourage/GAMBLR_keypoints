@@ -1,5 +1,5 @@
 # Fix the splice region annotations
-maf <- maf %>% #`%>%`takes the result of one function (maf) and pipes it into the next function as the first argument
+maf <- maf_data %>% #`%>%`takes the result of one function (maf) and pipes it into the next function as the first argument
   #mutate() is used to create new columns while keeping existing ones
   mutate(
     # left side is the name for the column 
@@ -9,6 +9,9 @@ maf <- maf %>% #`%>%`takes the result of one function (maf) and pipes it into th
     cdna_pos = as.numeric(str_extract(HGVSc, "(?<=c\\.)-?\\d+")),
     
     #string starting with c indicates a coding DNA sequence and grabs the number immediately following it 
+    #cdna_pos: a new column
+    #as.numeric: as a numerical value (digit not character)
+    # "(?<=c\\.)-?\\d+": extracting the numerical value while ignoring all other characters  
     #for example, if c.435G>A, extracts 435
     #HGVSc: Human Genome Variation Society (HGVS) at the coding DNA level (e.g. HGVSp is protein level, etc)
     
@@ -61,7 +64,7 @@ maf <- maf %>% #`%>%`takes the result of one function (maf) and pipes it into th
     
     #`TRUE ~`: acts as default case, if none of these splice donor/acceptor conditions are met, default variant label is "p.NearSplice"
     
-    #note: in c.xxx, c. stands for coding DNA, meaning xxx in a base in an extron (no introns represented since these are cut out)
+    #note: in c.xxx, c. stands for coding DNA, meaning xxx is a base in an extron (no introns represented since these are cut out)
     
     #note: essentially this code is to take a sequence such as c.123+1G>A, and doing the following:
     #figuring out the number of the base (123) and the splice offset (+1)
