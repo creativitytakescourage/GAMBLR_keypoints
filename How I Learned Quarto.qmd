@@ -1,0 +1,139 @@
+---
+title: "How I Learned Quarto"
+author: Francesca Chen
+date: today
+format: 
+  revealjs:
+      footer: "A General Overview"
+      logo: https://morinlab.github.io/images/team/MorinLabLogo200.jpg
+      transition: fade
+embed-resources: true
+editor: visual
+---
+
+## The Basics
+
+-   Headings
+
+-   Embedding code
+
+-   Adding a footer/footnotes
+
+-   Creating tip box
+
+-   To collapse tip box
+
+-   Wrapping code
+
+-   Adding speaker notes
+
+## Headings
+
+Use \`##\` to create a heading
+
+\`## Heading here\`
+
+## Embedding code
+
+1.  Type \`\`\``{r}`
+2.  Add code
+
+```{r}
+paste("here is my code")
+plot(1)
+```
+
+## Adding a footer/footnotes
+
+1.  Add to preamble:
+
+    \`
+
+    footer:
+
+    \`
+
+## Creating tip box
+
+1.  Create \`:::\`
+2.  Space, then add {.callout-tip}
+3.  Add text and/images
+
+::: callout-tip
+Put tip here!
+:::
+
+## To collapse the tip box:
+
+1.  Follow steps 1 and 2
+2.  add \`collapse="true"\` after {.callout-tip}
+3.  Note that this only works for HTML
+
+::: {.callout-tip collapse="true"}
+## Now you have a markdown!
+
+Put tip here
+:::
+
+## Wrapping code
+
+1.  In the preamble add
+
+    \`
+
+    format:
+
+    html:
+
+    code-overflow: wrap
+
+    \`
+
+## Adding speaker notes
+
+1.  Type \`:::\`
+2.  Space, then type "{.notes}"
+3.  Press the "s" key to see them!
+
+::: notes
+Here are your speaker notes! Can you read this?
+:::
+
+## Image
+
+1.  For online images
+
+-   click open this image in new tab
+-   copy address
+-   use this format: `![](paste link here)`
+
+2.  For images in device's files
+
+-   track path to and paste
+
+![](https://morinlab.github.io/images/team/MorinLabLogo200.jpg)
+
+## embed-resources: true
+
+-   without this in preamble the file containing any images/plots/graphics/etc will exist (e.g. How I Learned Quarto_files) however if you send your quarto document the recipient will be unable to see them
+-   with this the file will not exist and recipients will be able to see images included
+
+## revealjs or html?
+
+-   revealjs:
+    -   presentation style
+    -   has speaker notes function
+-   html:
+    -   document style
+    -   has tip box collapse function
+
+## Preamble additions
+
+```{r}
+paste("Note: if in preamble will be applied to all slides")
+```
+
+-   logo: (insert address/link)
+-   footer: (add footnote)
+-   theme: (e.g. dark)
+-   transition: (e.g. fade)
