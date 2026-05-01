@@ -76,3 +76,44 @@ maf <- maf_data %>% #`%>%`takes the result of one function (maf) and pipes it in
   select(-cdna_pos, -splice_offset)
 
   #removes original cdna_pos (replaced by amino acid position in the label) and splice_offset columns (since splice_offset info is kept in the label)
+
+return(maf) 
+}
+
+infer_splice_region_annotation(maf_data = input)
+input %>%
+  select(HGVSp_Short) %>% 
+  head(100) %>%
+  as.data.frame()
+# will display all the values included ones N/A
+
+nonpopulated <- input %>% 
+  as.data.frame() %>%
+  filter(is.na(HGVSp_Short))
+# filter(): looks at the condition, sees if specific row matches the condition, if true will use, if not, discard
+# is.na: function that checks whether value is empty or not 
+
+outcome <- infer_splice_region_annotation(maf_data = nonpopulated)
+outcome %>%
+  select(HGVSp_Short) %>%
+  head(100) %>%
+  as.data.frame()
+
+populated <- input %>%
+  as.data.frame() %>%
+  filter(!is.na(HGVSp_Short))
+
+output <- infer_splice_region_annotation(maf_data = populated)
+output %>%
+  select(HGVSp_Short) %>%
+  head(100) %>%
+  as.data.frame()
+
+identical(populated, output)
+all.equal(
+  nonpopulated,  
+  outcome
+)
+# identical() and all.equal() is same, but latter will provide more verbose output
+
+
