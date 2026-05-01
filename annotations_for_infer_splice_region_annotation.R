@@ -115,5 +115,3 @@ all.equal(
   outcome
 )
 # identical() and all.equal() is same, but latter will provide more verbose output
-
-
