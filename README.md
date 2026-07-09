@@ -1,6 +1,8 @@
 # My vocabulary
 
 `%>%` pipe operator: output on the left side will be passed directly to the command on the right side of the operator
+  ex.
+  + metadata <- get_gambl_metadata() %>%
 
 `function_name` function name: arbitrarily selected name that will help us know/indicate to us what this function will do
   ex.
@@ -104,11 +106,13 @@
   ex
   + metadata <- get_gambl_metadata() 
     metadata$pathology
+    
+`count()` : count() is from the dplyr package used to count the unique values or combinations of variables in a data frame
+Acts as a shortcut for combining group_by() and summarise(n = n()), outputting a clean frequency table as a tibble.
+`group_by()` : used to segment a data frame into subsets based on one or more categorical variables
+`ungroup()` : must follow group_by() or else future code will use on the subset
+`max(n())` : maximum number of rows (or observations) across a set of groups
 
-`%>%`:
-  ex.
-  + metadata <- get_gambl_metadata() %>%
-  
 To annotate:  
 
 select(
